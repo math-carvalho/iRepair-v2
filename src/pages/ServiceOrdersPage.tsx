@@ -112,10 +112,15 @@ export function ServiceOrdersPage() {
     }
 
     return (
-        <div>
-            <div>
-                <form onSubmit={handleRegisterSO}>
+        <div className="flex flex-col items-center p-14">
+            <div className="bg-gray-950 text-white rounded text-2xl p-4">
+                <h2>Página de Ordens de Serviço</h2>
+            </div>
+
+            <form className="bg-gray-600 rounded p-6 m-8" onSubmit={handleRegisterSO}>
+                <div className="flex flex-col gap-8">
                     <input
+                        className="bg-gray-300 p-4 rounded" 
                         value={device}
                         onChange={(e) => setDevice(e.target.value)}
                         placeholder="Dispositivo:"
@@ -123,6 +128,7 @@ export function ServiceOrdersPage() {
                     />
                     
                     <input
+                        className="bg-gray-300 p-4 rounded"
                         value={issue}
                         onChange={(e) => setIssue(e.target.value)}
                         placeholder="Defeito:"
@@ -130,6 +136,7 @@ export function ServiceOrdersPage() {
                     />
 
                     <select
+                        className="bg-gray-300 p-4 rounded" 
                         value={clientId}
                         onChange={(e) => {
                             const value = e.target.value;
@@ -146,26 +153,39 @@ export function ServiceOrdersPage() {
                                 </option>
                             ))}
                     </select>
-
-                    <button type="submit" disabled={isSubmitting}>
+                </div>
+                
+                <div className="flex flex-col pt-8">
+                    <button 
+                        className="bg-gray-800 text-white rounded-full p-3 hover:bg-gray-500 cursor-pointer"
+                        type="submit" 
+                        disabled={isSubmitting}>
                         {isSubmitting ? "Registrando..." : "Registrar"}
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
             
-            <div>
+            <div className="bg-gray-600 text-white rounded m-8 p-4">
                 {serviceOrders.length === 0 ? (
                     <p>Sem ordens de serviço cadastradas.</p>
                 ) : (
-                    <ul>
+                    <div className="flex flex-col gap-4">
                         {serviceOrders.map(so => (
-                            <li key={so.id}>
-                                {/* TODO: Completar quando for possível visualizar */}
-                                <button onClick={() => handleRemoveSO(so.id)}>Remover</button>
-                            </li>)                
-                            )
-                        }     
-                    </ul>
+                            <div key={so.id} className="bg-gray-500 p-4 rounded">
+                                <ul>
+                                    <li>Dispositivo: {so.device}</li>
+                                    <li>Defeito: {so.issue}</li>
+                                    <li>Status: {so.status}</li>
+                                </ul>
+                                <button 
+                                    className="mt-2 text-white rounded p-2 bg-gray-800 hover:bg-red-500"
+                                    onClick={() => handleRemoveSO(so.id)}
+                                >
+                                    Remover
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 )}
             </div>
         </div>
