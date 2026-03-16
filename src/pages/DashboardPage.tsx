@@ -43,18 +43,30 @@ export function DashboardPage() {
         return <p>{error}</p>;
     }
 
-    // Verifica se a lista de OS's está vazia
-    if (serviceOrders.length === 0) {
-        return <p>Sem ordens de serviço cadastradas.</p>
-    }
-
     return (
-        <ul>
-            {serviceOrders.map(so => (
-                <li key={so.id}>
-                    {/* TODO: Completar quando for possível visualizar */}
-                </li>))
-            }     
-        </ul>
+        <div className="flex flex-col items-center p-14">
+            <div className="bg-gray-950 text-white rounded text-2xl p-4">
+                <h2>Dashboard</h2>
+        </div>
+        
+        <div className="bg-gray-600 text-white rounded m-8 p-4">
+            {serviceOrders.length === 0 ? (
+                <p>Sem ordens de serviço cadastradas.</p>
+                ) : (
+                    <div className="flex flex-col gap-4">
+                        {serviceOrders.map(so => (
+                            <div key={so.id} className="bg-gray-500 p-4 rounded">
+                                <ul>
+                                    <li>Dispositivo: {so.device}</li>
+                                    <li>Defeito: {so.issue}</li>
+                                    <li>Status: {so.status}</li>
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+        </div>
     );
 }
