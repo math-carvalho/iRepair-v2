@@ -1,9 +1,18 @@
 // Cabeçalho do iRepair
+import { Link } from "react-router";
 
 export function Header() {
     return (
-        <header className="bg-gray-950 text-3xl text-white px-10 py-6 flex justify-center">
-            <h1>iRepair</h1>
+        <header className="bg-gray-950 text-white flex justify-between items-center p-4 py-6">
+            <div className="text-3xl ">
+                <h1>iRepair</h1>
+             </div>
+
+            <nav className="flex gap-4" >
+                <Link to="/">Dashboard</Link>
+                <Link to="/clients">Clients</Link>
+                <Link to="/service-orders">Service Orders</Link>
+            </nav>
         </header>
     );
 }
