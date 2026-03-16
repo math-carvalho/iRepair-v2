@@ -79,10 +79,15 @@ export function ClientsPage() {
     }
 
     return (
-        <div>
-            <div>
-                <form onSubmit={handleRegisterClient}>
+        <div className="flex flex-col items-center p-14">
+            <div className="bg-gray-950 text-white rounded text-2xl p-4">
+                <h2>Página de Clientes</h2>
+            </div>
+
+            <form className="bg-gray-600 rounded p-6 m-8" onSubmit={handleRegisterClient}>
+                <div className="flex flex-col gap-8">
                     <input
+                        className="bg-gray-300 p-4 rounded" 
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
                         placeholder="Nome:"
@@ -90,6 +95,7 @@ export function ClientsPage() {
                     />
                     
                     <input
+                        className="bg-gray-300 p-4 rounded" 
                         value={clientPhone}
                         onChange={(e) => setClientPhone(e.target.value)}
                         placeholder="Telefone:"
@@ -97,32 +103,46 @@ export function ClientsPage() {
                     />
 
                     <input
+                        className="bg-gray-300 p-4 rounded" 
                         type="email"
                         value={clientEmail}
                         onChange={(e) => setClientEmail(e.target.value)}
                         placeholder="E-mail:"
                         required
                     />
-
-                    <button type="submit" disabled={isSubmitting}>
+                </div>
+                
+                <div className="flex flex-col pt-8">
+                    <button 
+                        className="bg-gray-800 text-white rounded-full p-3 hover:bg-gray-500 cursor-pointer"
+                        type="submit" 
+                        disabled={isSubmitting}>
                         {isSubmitting ? "Registrando..." : "Registrar"}
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
             
-            <div>
+            <div className="bg-gray-600 text-white rounded m-8 p-4">
                 {clients.length === 0 ? (
                     <p>Sem clientes cadastrados.</p>
                 ) : (
-                    <ul>
+                    <div className="flex flex-col gap-4">
                         {clients.map(c => (
-                            <li key={c.id}>
-                                {/* TODO: Completar quando for possível visualizar */}
-                                <button onClick={() => handleRemoveClient(c.id)}>Remover</button>
-                            </li>)                
-                            )
-                        }     
-                    </ul>
+                            <div key={c.id} className="bg-gray-500 p-4 rounded">
+                                <ul>
+                                    <li>Nome: {c.name}</li>
+                                    <li>Telefone: {c.phone}</li>
+                                    <li>E-mail: {c.email}</li>
+                                </ul>
+                                <button 
+                                    className="mt-2 text-white rounded p-2 bg-gray-800 hover:bg-red-500"
+                                    onClick={() => handleRemoveClient(c.id)}
+                                >
+                                    Remover
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 )}
             </div>
         </div>
