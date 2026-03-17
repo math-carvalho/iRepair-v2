@@ -9,6 +9,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<MainLayout />}>
+          <Route path="*" element={<h1>Página não encontrada.</h1>} />
           <Route path="/" element={<DashboardPage />}/>
           <Route path="/clients" element={<ClientsPage />} />
           <Route path="/service-orders" element={<ServiceOrdersPage />} />
