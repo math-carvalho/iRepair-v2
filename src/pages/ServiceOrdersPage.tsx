@@ -114,7 +114,7 @@ export function ServiceOrdersPage() {
     return (
         <div className="flex flex-col items-center p-14">
             <div className="bg-gray-950 text-white rounded text-2xl p-4">
-                <h2>Página de Ordens de Serviço</h2>
+                <h2>Ordens de Serviço</h2>
             </div>
 
             <form className="bg-gray-600 rounded p-6 m-8" onSubmit={handleRegisterSO}>

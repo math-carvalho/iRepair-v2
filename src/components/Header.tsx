@@ -10,8 +10,8 @@ export function Header() {
 
             <nav className="flex gap-4" >
                 <Link to="/">Dashboard</Link>
-                <Link to="/clients">Clients</Link>
-                <Link to="/service-orders">Service Orders</Link>
+                <Link to="/clients">Clientes</Link>
+                <Link to="/service-orders">Ordens de Serviço</Link>
             </nav>
         </header>
     );
